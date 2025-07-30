@@ -4,7 +4,15 @@
 // Cada array es un "dado" de 6 caras.
 
 const dado1_conceptos = ["Causa y Efecto", "El Ser", "La Nada", "Devenir", "Esencia", "Existencia"];
-const dado2_autores = ["Platón", "Aristóteles", "Kant", "Nietzsche", "Descartes", "Simone de Beauvoir"];
+// dado2_autores ahora contiene las rutas de las imágenes
+const dado2_autores = [
+  "imagenes/platon.jpeg",
+  "imagenes/aristoteles.jpeg",
+  "imagenes/kant.jpeg",
+  "imagenes/nietzsche.jpeg",
+  "imagenes/descartes.jpeg",
+  "imagenes/wittgenstein.jpeg"
+];
 const dado3_preguntas = ["¿Qué es la verdad?", "¿Somos libres?", "¿Existe Dios?", "¿Qué es la justicia?", "¿Cómo debo vivir?", "¿Qué es la belleza?"];
 const dado4_ismos = ["Racionalismo", "Empirismo", "Existencialismo", "Estoicismo", "Idealismo", "Materialismo"];
 const dado5_conceptos2 = ["Alma", "Cuerpo", "Mente", "Realidad", "Virtualidad", "Lenguaje"];
@@ -62,12 +70,21 @@ botonLanzar.addEventListener('click', function() {
         const conceptoGanador = dadoElegido[caraAleatoria];
         
         // Guardamos el resultado.
-        resultadosActuales.push(conceptoGanador);
+        resultadosActuales.push(
+          // Para historial: si es dado2, muestra solo el nombre del archivo sin extensión
+          (i === 1) ? conceptoGanador.split('/').pop().replace('.jpeg', '') : conceptoGanador
+        );
         
         // Creamos un elemento visual para el dado y lo mostramos.
         const dadoDiv = document.createElement('div');
         dadoDiv.classList.add('dado');
-        dadoDiv.textContent = conceptoGanador;
+        if (i === 1) {
+          // Para el segundo dado, muestra la imagen
+          dadoDiv.innerHTML = `<img src="${conceptoGanador}" alt="Autor" style="max-width:100px; max-height:100px;">`;
+        } else {
+          // Para los demás, muestra el texto
+          dadoDiv.textContent = conceptoGanador;
+        }
         contenedorResultado.appendChild(dadoDiv);
     }
     
