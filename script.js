@@ -6,12 +6,12 @@
 const dado1_conceptos = ["Causa y Efecto", "El Ser", "La Nada", "Devenir", "Esencia", "Existencia"];
 // dado2_autores ahora contiene las rutas de las imágenes
 const dado2_autores = [
-  "imagenes/platon.jpeg",
-  "imagenes/aristoteles.jpeg",
-  "imagenes/kant.jpeg",
-  "imagenes/nietzsche.jpeg",
-  "imagenes/descartes.jpeg",
-  "imagenes/wittgenstein.jpeg"
+  "imagenes/platon.jpg",
+  "imagenes/aristoteles.jpg",
+  "imagenes/kant.jpg",
+  "imagenes/nietzsche.jpg",
+  "imagenes/descartes.jpg",
+  "imagenes/wittgenstein.jpg"
 ];
 const dado3_preguntas = ["¿Qué es la verdad?", "¿Somos libres?", "¿Existe Dios?", "¿Qué es la justicia?", "¿Cómo debo vivir?", "¿Qué es la belleza?"];
 const dado4_ismos = ["Racionalismo", "Empirismo", "Existencialismo", "Estoicismo", "Idealismo", "Materialismo"];
