@@ -13,7 +13,7 @@ function crearRutaImagen(texto) {
     return `imagenes/${nombreArchivo}.png`;
 }
 
-const dado1_conceptos = ["Causa y Efecto", "El Ser", "La Nada", "Devenir", "Esencia", "Existencia"].map(crearRutaImagen);
+const dado1_conceptos = ["imagenes/dios.png", "imagenes/icon1.png", "imagenes/libertad.png", "imagenes/tiempo.png", "imagenes/destino.png", "imagenes/esencia.png"].map(crearRutaImagen);
 const dado2_autores = ["imagenes/platon.jpg", "imagenes/aristoteles.jpg", "imagenes/kant.jpg", "imagenes/nietzsche.jpg", "imagenes/descartes.jpg", "imagenes/wittgenstein.jpg"];
 const dado3_preguntas = ["¿Qué es la verdad?", "¿Somos libres?", "¿Existe Dios?", "¿Qué es la justicia?", "¿Cómo debo vivir?", "¿Qué es la belleza?"].map(crearRutaImagen);
 const dado4_ismos = ["Racionalismo", "Empirismo", "Existencialismo", "Estoicismo", "Idealismo", "Materialismo"].map(crearRutaImagen);
