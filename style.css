@@ -83,5 +83,15 @@ h2 {
     border-radius: 5px;
     margin-bottom: 8px;
     border-left: 4px solid #95a5a6;
-    font-size: 14px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.historial-img {
+    max-height: 40px;
+    max-width: 40px;
+    border-radius: 4px;
+    vertical-align: middle;
 }
