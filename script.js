@@ -1,5 +1,13 @@
 // script.js
 
+// --- Definición de Dados ---
+
+// NUEVO: Nombres para cada dado que se mostrarán en la UI.
+const nombresDeDados = [
+    "Conceptos", "Autores", "Preguntas", "Ismos", "Conceptos II", 
+    "Ética", "Política", "Metáforas", "Autores II"
+];
+
 function crearRutaImagen(texto) {
     const nombreArchivo = texto.toLowerCase().replace(/[¿?]/g, '').replace(/\s+/g, '_');
     return `imagenes/${nombreArchivo}.png`;
@@ -17,30 +25,52 @@ const dado9_autores2 = ["Sócrates", "Foucault", "Simone de Beauvoir", "Hume", "
 
 const todosLosDados = [dado1_conceptos, dado2_autores, dado3_preguntas, dado4_ismos, dado5_conceptos2, dado6_etica, dado7_politica, dado8_metaforas, dado9_autores2];
 
+// --- Obtener los elementos del HTML ---
 const botonLanzar = document.getElementById('lanzar-btn');
-const sliderDados = document.getElementById('numero-dados');
-const valorSlider = document.getElementById('valor-slider');
+const contenedorSeleccion = document.getElementById('seleccion-dados');
 const contenedorResultado = document.getElementById('resultado-dados');
 const contenedorHistorial = document.getElementById('historial');
 
-sliderDados.oninput = function() {
-    valorSlider.innerHTML = this.value;
+// --- Lógica de la aplicación ---
+
+// NUEVO: Función para crear las casillas de selección de dados al cargar la página
+function popularSeleccionDeDados() {
+    nombresDeDados.forEach((nombre, index) => {
+        const opcionDiv = document.createElement('div');
+        opcionDiv.classList.add('opcion-dado');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = `dado-${index}`;
+        checkbox.value = index; // El valor es el índice del dado en el array `todosLosDados`
+        // Marcamos los 3 primeros por defecto
+        if (index < 3) {
+            checkbox.checked = true;
+        }
+
+        const label = document.createElement('label');
+        label.htmlFor = `dado-${index}`;
+        label.textContent = nombre;
+
+        opcionDiv.appendChild(checkbox);
+        opcionDiv.appendChild(label);
+        contenedorSeleccion.appendChild(opcionDiv);
+    });
 }
 
-function getNombreParaAlt(ruta) {
-    const nombreArchivo = ruta.split('/').pop();
-    const sinExtension = nombreArchivo.substring(0, nombreArchivo.lastIndexOf('.'));
-    const nombreLegible = sinExtension.replace(/_/g, ' ');
-    return nombreLegible.charAt(0).toUpperCase() + nombreLegible.slice(1);
-}
-
+// MODIFICADO: La lógica del botón de lanzamiento ahora lee las casillas marcadas
 botonLanzar.addEventListener('click', function() {
     contenedorResultado.innerHTML = '';
-    const numeroDeLanzamientos = sliderDados.value;
     let resultadosActuales = [];
-
-    for (let i = 0; i < numeroDeLanzamientos; i++) {
-        const dadoElegido = todosLosDados[i];
+    
+    // 1. Encontrar todas las casillas que están marcadas
+    const checkboxesSeleccionados = document.querySelectorAll('#seleccion-dados input[type="checkbox"]:checked');
+    
+    // 2. Iterar sobre los dados seleccionados para lanzarlos
+    checkboxesSeleccionados.forEach(checkbox => {
+        const indiceDado = parseInt(checkbox.value, 10);
+        const dadoElegido = todosLosDados[indiceDado];
+        
         const caraAleatoria = Math.floor(Math.random() * dadoElegido.length);
         const conceptoGanador = dadoElegido[caraAleatoria];
         
@@ -51,10 +81,20 @@ botonLanzar.addEventListener('click', function() {
         const altText = getNombreParaAlt(conceptoGanador);
         dadoDiv.innerHTML = `<img src="${conceptoGanador}" alt="${altText}" style="max-width:100px; max-height:100px;">`;
         contenedorResultado.appendChild(dadoDiv);
-    }
+    });
     
-    actualizarHistorial(resultadosActuales);
+    // 3. Actualizar historial solo si se lanzó al menos un dado
+    if (resultadosActuales.length > 0) {
+        actualizarHistorial(resultadosActuales);
+    }
 });
+
+function getNombreParaAlt(ruta) {
+    const nombreArchivo = ruta.split('/').pop();
+    const sinExtension = nombreArchivo.substring(0, nombreArchivo.lastIndexOf('.'));
+    const nombreLegible = sinExtension.replace(/_/g, ' ');
+    return nombreLegible.charAt(0).toUpperCase() + nombreLegible.slice(1);
+}
 
 function actualizarHistorial(resultados) {
     const historialItem = document.createElement('div');
@@ -70,3 +110,7 @@ function actualizarHistorial(resultados) {
     
     contenedorHistorial.prepend(historialItem);
 }
+
+// --- Inicialización ---
+// Llama a la nueva función para que se muestren las opciones al cargar la página
+popularSeleccionDeDados();
