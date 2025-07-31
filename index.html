@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Dados Filosóficos</title>
+    <title>Dados Filosóficos con IA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,8 +19,17 @@
 
         <button id="lanzar-btn">Lanzar Dados Seleccionados</button>
 
+        <button id="generar-gemini-btn" style="display:none;">✨ Generar Reflexión con IA</button>
+
+
         <h2>Resultado Actual</h2>
         <div id="resultado-dados" class="contenedor-dados"></div>
+
+        <h2>Reflexión Generada (IA)</h2>
+        <div id="gemini-container" class="gemini-container">
+            <p id="gemini-respuesta">Aquí aparecerá la reflexión generada por la inteligencia artificial...</p>
+        </div>
+
 
         <h2>Historial de Lanzamientos</h2>
         <div id="historial"></div>
