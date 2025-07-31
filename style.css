@@ -77,7 +77,6 @@ h2 {
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-/* MODIFICADO: Se ajusta el item del historial para alinear las imágenes */
 .historial-item {
     background-color: #fafafa;
     padding: 10px;
@@ -87,10 +86,9 @@ h2 {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 5px; /* Añade un espacio entre las imágenes */
+    gap: 5px;
 }
 
-/* NUEVO: Estilo para las imágenes dentro del historial */
 .historial-img {
     max-height: 40px;
     max-width: 40px;
