@@ -18,6 +18,27 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+/* NUEVO: Estilo para el botón del enlace externo */
+.external-link-btn {
+    display: inline-block;
+    background-color: #1a73e8;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.external-link-btn:hover {
+    background-color: #1665c4;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
 h1 {
     color: #2c3e50;
     text-align: center;
@@ -36,7 +57,6 @@ h2 {
     margin: 20px 0;
 }
 
-/* NUEVO: Contenedor para la cuadrícula de selección de dados */
 .contenedor-seleccion-dados {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -47,7 +67,6 @@ h2 {
     margin-top: 10px;
 }
 
-/* NUEVO: Estilo para cada opción individual (checkbox + label) */
 .opcion-dado {
     display: flex;
     align-items: center;
@@ -64,8 +83,8 @@ h2 {
 
 .opcion-dado input[type="checkbox"] {
     margin-right: 10px;
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 10px;
 }
 
 .opcion-dado label {
@@ -74,14 +93,13 @@ h2 {
 }
 
 
-#lanzar-btn {
+#lanzar-btn, #generar-gemini-btn {
     display: block;
     width: 100%;
     padding: 15px;
     font-size: 18px;
     font-weight: bold;
     color: #fff;
-    background-color: #3498db;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -89,9 +107,22 @@ h2 {
     margin-top: 20px;
 }
 
+#lanzar-btn {
+    background-color: #3498db;
+}
+
 #lanzar-btn:hover {
     background-color: #2980b9;
 }
+
+#generar-gemini-btn {
+    background-color: #8e44ad;
+}
+
+#generar-gemini-btn:hover {
+    background-color: #7b2a9a;
+}
+
 
 .contenedor-dados {
     display: flex;
@@ -99,7 +130,7 @@ h2 {
     gap: 15px;
     justify-content: center;
     margin-top: 20px;
-    min-height: 100px; /* Evita que el layout salte cuando no hay resultados */
+    min-height: 100px; 
 }
 
 .dado {
@@ -110,8 +141,10 @@ h2 {
     font-size: 16px;
     font-weight: 500;
     text-align: center;
+
     width: 140px; /* Ancho fijo para consistencia */
     height: 140px; /* Alto fijo para consistencia */
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,6 +156,22 @@ h2 {
     max-height: 100px;
     object-fit: contain;
 }
+
+.gemini-container {
+    background-color: #f8f9fa;
+    border-left: 4px solid #8e44ad;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    min-height: 50px;
+}
+
+#gemini-respuesta {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #34495e;
+}
+
 
 .historial-item {
     background-color: #fafafa;
