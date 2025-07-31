@@ -12,12 +12,12 @@
         <p>Una herramienta inspirada en "Story Cubes" para el aula de Filosofía.</p>
 
         <div class="controles">
-            <h2>Elige tus dados</h2>
-            <div id="seleccion-dados" class="contenedor-seleccion-dados">
-                </div>
+            <label for="numero-dados">Elige cuántos dados lanzar (3-9):</label>
+            <input type="range" id="numero-dados" min="3" max="9" value="3">
+            <span id="valor-slider">3</span>
         </div>
 
-        <button id="lanzar-btn">Lanzar Dados Seleccionados</button>
+        <button id="lanzar-btn">Lanzar Dados</button>
 
         <h2>Resultado Actual</h2>
         <div id="resultado-dados" class="contenedor-dados"></div>
