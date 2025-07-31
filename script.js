@@ -1,8 +1,6 @@
 // script.js
 
 // --- Definición de Dados ---
-
-// NUEVO: Nombres para cada dado que se mostrarán en la UI.
 const nombresDeDados = [
     "Conceptos", "Autores", "Preguntas", "Ismos", "Conceptos II", 
     "Ética", "Política", "Metáforas", "Autores II"
@@ -31,63 +29,100 @@ const contenedorSeleccion = document.getElementById('seleccion-dados');
 const contenedorResultado = document.getElementById('resultado-dados');
 const contenedorHistorial = document.getElementById('historial');
 
+// --- NUEVO: Elementos para la funcionalidad de IA ---
+const botonGenerarGemini = document.getElementById('generar-gemini-btn');
+const contenedorGemini = document.getElementById('gemini-container');
+const respuestaGemini = document.getElementById('gemini-respuesta');
+let ultimosResultadosParaIA = []; // Variable para guardar los resultados
+
 // --- Lógica de la aplicación ---
 
-// NUEVO: Función para crear las casillas de selección de dados al cargar la página
 function popularSeleccionDeDados() {
     nombresDeDados.forEach((nombre, index) => {
         const opcionDiv = document.createElement('div');
         opcionDiv.classList.add('opcion-dado');
-
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.id = `dado-${index}`;
-        checkbox.value = index; // El valor es el índice del dado en el array `todosLosDados`
-        // Marcamos los 3 primeros por defecto
+        checkbox.value = index;
         if (index < 3) {
             checkbox.checked = true;
         }
-
         const label = document.createElement('label');
         label.htmlFor = `dado-${index}`;
         label.textContent = nombre;
-
         opcionDiv.appendChild(checkbox);
         opcionDiv.appendChild(label);
         contenedorSeleccion.appendChild(opcionDiv);
     });
 }
 
-// MODIFICADO: La lógica del botón de lanzamiento ahora lee las casillas marcadas
 botonLanzar.addEventListener('click', function() {
     contenedorResultado.innerHTML = '';
     let resultadosActuales = [];
+    ultimosResultadosParaIA = []; // Limpiar resultados anteriores
     
-    // 1. Encontrar todas las casillas que están marcadas
     const checkboxesSeleccionados = document.querySelectorAll('#seleccion-dados input[type="checkbox"]:checked');
     
-    // 2. Iterar sobre los dados seleccionados para lanzarlos
     checkboxesSeleccionados.forEach(checkbox => {
         const indiceDado = parseInt(checkbox.value, 10);
         const dadoElegido = todosLosDados[indiceDado];
-        
         const caraAleatoria = Math.floor(Math.random() * dadoElegido.length);
         const conceptoGanador = dadoElegido[caraAleatoria];
-        
         resultadosActuales.push(conceptoGanador);
         
         const dadoDiv = document.createElement('div');
         dadoDiv.classList.add('dado');
         const altText = getNombreParaAlt(conceptoGanador);
+        
+        // MODIFICADO: Guardamos el texto alternativo para usarlo con la IA
+        ultimosResultadosParaIA.push(altText);
+        
         dadoDiv.innerHTML = `<img src="${conceptoGanador}" alt="${altText}" style="max-width:100px; max-height:100px;">`;
         contenedorResultado.appendChild(dadoDiv);
     });
     
-    // 3. Actualizar historial solo si se lanzó al menos un dado
     if (resultadosActuales.length > 0) {
         actualizarHistorial(resultadosActuales);
+        // NUEVO: Mostrar el botón para generar reflexión
+        botonGenerarGemini.style.display = 'block';
+        respuestaGemini.textContent = 'Lanza los dados y pulsa el botón "Generar Reflexión con IA" para ver la magia.';
+    } else {
+        // Ocultar si no se lanzó ningún dado
+        botonGenerarGemini.style.display = 'none';
     }
 });
+
+// --- NUEVO: Lógica para el botón de IA ---
+botonGenerarGemini.addEventListener('click', function() {
+    if (ultimosResultadosParaIA.length === 0) {
+        respuestaGemini.textContent = "Por favor, lanza los dados primero.";
+        return;
+    }
+
+    // Preparamos el prompt para la IA
+    const prompt = `Genera una reflexión filosófica breve que conecte los siguientes conceptos: ${ultimosResultadosParaIA.join(', ')}.`;
+    
+    // Simulamos una llamada a la IA
+    respuestaGemini.textContent = 'Generando... 🧠';
+    
+    // Usamos un timeout para simular el tiempo de respuesta de la red
+    setTimeout(() => {
+        const textoGenerado = simularLlamadaGemini(prompt);
+        respuestaGemini.textContent = textoGenerado;
+    }, 1500);
+});
+
+/**
+ * NUEVO: Simulación de una función de IA.
+ * En una aplicación real, aquí harías una llamada (fetch) a un servicio de IA.
+ * Para este ejemplo, devolvemos un texto pre-generado que incluye los conceptos.
+ */
+function simularLlamadaGemini(prompt) {
+    const conceptos = ultimosResultadosParaIA.join(', ');
+    return `Reflexión sobre: ${conceptos}. La intersección de estos conceptos nos invita a un profundo análisis. ¿Podría ser que la ${ultimosResultadosParaIA[0].toLowerCase()} sea simplemente una construcción del ${ultimosResultadosParaIA[1].toLowerCase()} para dar sentido a nuestra existencia? Desde una perspectiva existencialista, cada individuo debe forjar su propia respuesta ante esta disyuntiva, confrontando la ${ultimosResultadosParaIA[2].toLowerCase()} con la autenticidad de su ser. Este diálogo entre ideas dispares es el corazón mismo del quehacer filosófico.`;
+}
+
 
 function getNombreParaAlt(ruta) {
     const nombreArchivo = ruta.split('/').pop();
@@ -99,7 +134,6 @@ function getNombreParaAlt(ruta) {
 function actualizarHistorial(resultados) {
     const historialItem = document.createElement('div');
     historialItem.classList.add('historial-item');
-    
     resultados.forEach(rutaImagen => {
         const img = document.createElement('img');
         img.src = rutaImagen;
@@ -107,10 +141,8 @@ function actualizarHistorial(resultados) {
         img.classList.add('historial-img');
         historialItem.appendChild(img);
     });
-    
     contenedorHistorial.prepend(historialItem);
 }
 
 // --- Inicialización ---
-// Llama a la nueva función para que se muestren las opciones al cargar la página
 popularSeleccionDeDados();
