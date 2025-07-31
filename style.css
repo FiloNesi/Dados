@@ -64,8 +64,8 @@ h2 {
 
 .opcion-dado input[type="checkbox"] {
     margin-right: 10px;
-    width: 10px;
-    height: 10px;
+    width: 18px;
+    height: 18px;
 }
 
 .opcion-dado label {
@@ -106,12 +106,10 @@ h2 {
     background-color: #ecf0f1;
     border: 2px solid #bdc3c7;
     border-radius: 8px;
-    padding: 20px;
-    font-size: 16px;
-    font-weight: 500;
+    padding: 10px; /* Reducido para menor espacio interior */
     text-align: center;
-    width: 150px; /* Ancho fijo para consistencia */
-    height: 150px; /* Alto fijo para consistencia */
+    width: 120px;  /* Ancho reducido */
+    height: 120px; /* Alto reducido */
     display: flex;
     justify-content: center;
     align-items: center;
