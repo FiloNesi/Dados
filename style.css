@@ -18,6 +18,27 @@ body {
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+/* NUEVO: Estilo para el botón del enlace externo */
+.external-link-btn {
+    display: inline-block;
+    background-color: #1a73e8;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.external-link-btn:hover {
+    background-color: #1665c4;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
 h1 {
     color: #2c3e50;
     text-align: center;
@@ -72,7 +93,7 @@ h2 {
 }
 
 
-#lanzar-btn, #generar-gemini-btn /* MODIFICADO: Aplicar estilos a ambos botones */ {
+#lanzar-btn, #generar-gemini-btn {
     display: block;
     width: 100%;
     padding: 15px;
@@ -94,9 +115,8 @@ h2 {
     background-color: #2980b9;
 }
 
-/* NUEVO: Estilo para el botón de IA */
 #generar-gemini-btn {
-    background-color: #8e44ad; /* Un color morado para distinguirlo */
+    background-color: #8e44ad;
 }
 
 #generar-gemini-btn:hover {
@@ -135,7 +155,6 @@ h2 {
     object-fit: contain;
 }
 
-/* NUEVO: Estilos para el contenedor de la respuesta de IA */
 .gemini-container {
     background-color: #f8f9fa;
     border-left: 4px solid #8e44ad;
