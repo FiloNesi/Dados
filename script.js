@@ -1,13 +1,12 @@
 // script.js
 
-// --- Definición de Dados ---
-// (Esta sección no cambia respecto a la versión anterior)
 function crearRutaImagen(texto) {
     const nombreArchivo = texto.toLowerCase().replace(/[¿?]/g, '').replace(/\s+/g, '_');
     return `imagenes/${nombreArchivo}.png`;
 }
+
 const dado1_conceptos = ["Causa y Efecto", "El Ser", "La Nada", "Devenir", "Esencia", "Existencia"].map(crearRutaImagen);
-const dado2_autores = ["imagenes/platon.jpg", "imagenes/aristoteles.jpg", "imagenes/kant.jpg", "imagenes/nietzsche.jpg", "imagenes/descartes.png", "imagenes/wittgenstein.jpg"];
+const dado2_autores = ["imagenes/platon.jpg", "imagenes/aristoteles.jpg", "imagenes/kant.jpg", "imagenes/nietzsche.jpg", "imagenes/descartes.jpg", "imagenes/wittgenstein.jpg"];
 const dado3_preguntas = ["¿Qué es la verdad?", "¿Somos libres?", "¿Existe Dios?", "¿Qué es la justicia?", "¿Cómo debo vivir?", "¿Qué es la belleza?"].map(crearRutaImagen);
 const dado4_ismos = ["Racionalismo", "Empirismo", "Existencialismo", "Estoicismo", "Idealismo", "Materialismo"].map(crearRutaImagen);
 const dado5_conceptos2 = ["Alma", "Cuerpo", "Mente", "Realidad", "Virtualidad", "Lenguaje"].map(crearRutaImagen);
@@ -18,17 +17,17 @@ const dado9_autores2 = ["Sócrates", "Foucault", "Simone de Beauvoir", "Hume", "
 
 const todosLosDados = [dado1_conceptos, dado2_autores, dado3_preguntas, dado4_ismos, dado5_conceptos2, dado6_etica, dado7_politica, dado8_metaforas, dado9_autores2];
 
-// --- Obtener los elementos del HTML ---
 const botonLanzar = document.getElementById('lanzar-btn');
 const sliderDados = document.getElementById('numero-dados');
 const valorSlider = document.getElementById('valor-slider');
 const contenedorResultado = document.getElementById('resultado-dados');
 const contenedorHistorial = document.getElementById('historial');
 
-// --- Lógica de la aplicación ---
-sliderDados.oninput = function() { valorSlider.innerHTML = this.value; }
+sliderDados.oninput = function() {
+    valorSlider.innerHTML = this.value;
+}
 
-function getNombreParaHistorial(ruta) {
+function getNombreParaAlt(ruta) {
     const nombreArchivo = ruta.split('/').pop();
     const sinExtension = nombreArchivo.substring(0, nombreArchivo.lastIndexOf('.'));
     const nombreLegible = sinExtension.replace(/_/g, ' ');
@@ -45,13 +44,11 @@ botonLanzar.addEventListener('click', function() {
         const caraAleatoria = Math.floor(Math.random() * dadoElegido.length);
         const conceptoGanador = dadoElegido[caraAleatoria];
         
-        // MODIFICADO: Ahora guardamos la RUTA de la imagen para el historial,
-        // en lugar del nombre del concepto.
         resultadosActuales.push(conceptoGanador);
         
         const dadoDiv = document.createElement('div');
         dadoDiv.classList.add('dado');
-        const altText = getNombreParaHistorial(conceptoGanador);
+        const altText = getNombreParaAlt(conceptoGanador);
         dadoDiv.innerHTML = `<img src="${conceptoGanador}" alt="${altText}" style="max-width:100px; max-height:100px;">`;
         contenedorResultado.appendChild(dadoDiv);
     }
@@ -59,20 +56,15 @@ botonLanzar.addEventListener('click', function() {
     actualizarHistorial(resultadosActuales);
 });
 
-// MODIFICADO: La función ahora crea elementos <img> para cada resultado en el historial.
 function actualizarHistorial(resultados) {
     const historialItem = document.createElement('div');
     historialItem.classList.add('historial-item');
     
-    // Limpiamos el contenido anterior.
-    historialItem.innerHTML = ''; 
-    
-    // Iteramos sobre los resultados (que son rutas de imágenes)
     resultados.forEach(rutaImagen => {
         const img = document.createElement('img');
         img.src = rutaImagen;
-        img.alt = getNombreParaHistorial(rutaImagen); // Usamos el nombre para accesibilidad
-        img.classList.add('historial-img'); // Añadimos clase para aplicar estilos
+        img.alt = getNombreParaAlt(rutaImagen);
+        img.classList.add('historial-img');
         historialItem.appendChild(img);
     });
     
