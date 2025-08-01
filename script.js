@@ -2,7 +2,7 @@
 
 // --- Definición de Dados ---
 const nombresDeDados = [
-    "Conceptos", "Autores", "Acciones", "Objetos", "Conceptos II", 
+    "Conceptos", "Autores", "Acciones", "Objetos", "Conceptos II",
     "Ética", "Política", "Metáforas", "Autores II"
 ];
 
@@ -21,7 +21,6 @@ const dado7_politica = ["Estado", "Poder", "Ley", "Ciudadano", "Democracia", "Co
 const dado8_metaforas = ["La Caverna", "El Eterno Retorno", "El Genio Maligno", "La Muerte de Dios", "El Superhombre", "El Velo de la Ignorancia"].map(crearRutaImagen);
 const dado9_autores2 = ["Sócrates", "Foucault", "Simone de Beauvoir", "Hume", "Spinoza", "Hannah Arendt"].map(crearRutaImagen);
 
-// CORRECCIÓN: Se han cambiado los nombres incorrectos por los correctos.
 const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_conceptos2, dado6_etica, dado7_politica, dado8_metaforas, dado9_autores2];
 
 // --- Obtener los elementos del HTML ---
@@ -54,23 +53,23 @@ function popularSeleccionDeDados() {
 botonLanzar.addEventListener('click', function() {
     contenedorResultado.innerHTML = '';
     let resultadosActuales = [];
-    
+
     const checkboxesSeleccionados = document.querySelectorAll('#seleccion-dados input[type="checkbox"]:checked');
-    
+
     checkboxesSeleccionados.forEach(checkbox => {
         const indiceDado = parseInt(checkbox.value, 10);
         const dadoElegido = todosLosDados[indiceDado];
         const caraAleatoria = Math.floor(Math.random() * dadoElegido.length);
         const conceptoGanador = dadoElegido[caraAleatoria];
         resultadosActuales.push(conceptoGanador);
-        
+
         const dadoDiv = document.createElement('div');
         dadoDiv.classList.add('dado');
         const altText = getNombreParaAlt(conceptoGanador);
         dadoDiv.innerHTML = `<img src="${conceptoGanador}" alt="${altText}" style="max-width:100px; max-height:100px;">`;
         contenedorResultado.appendChild(dadoDiv);
     });
-    
+
     if (resultadosActuales.length > 0) {
         actualizarHistorial(resultadosActuales);
     }
