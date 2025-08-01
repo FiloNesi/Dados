@@ -1,47 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Dados Filosóficos con IA</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Dados Filosóficos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
+    <div class="container">
 
+        <h1>🎲 Dados Filosóficos</h1>
+        <p>Una herramienta inspirada en "Story Cubes" para el aula de Filosofía.</p>
 
-        <h1>🎲 Dados Filosóficos</h1>
-        <p>Una herramienta inspirada en "Story Cubes" para el aula de Filosofía.</p>
+        <div class="controles">
+            <h2>Elige tus dados</h2>
+            <div id="seleccion-dados" class="contenedor-seleccion-dados">
+            </div>
+        </div>
 
-        <div class="controles">
-            <h2>Elige tus dados</h2>
-            <div id="seleccion-dados" class="contenedor-seleccion-dados">
-                </div>
-        </div>
+        <button id="lanzar-btn">Lanzar Dados Seleccionados</button>
 
-        <button id="lanzar-btn">Lanzar Dados Seleccionados</button>
+        <h2>Resultado Actual</h2>
+        <div id="resultado-dados" class="contenedor-dados"></div>
 
-        <button id="generar-gemini-btn" style="display:none;">✨ Generar Reflexión con IA</button>
+        <h2>Historial de Lanzamientos</h2>
+        <div id="historial"></div>
 
-        <h2>Resultado Actual</h2>
-        <div id="resultado-dados" class="contenedor-dados"></div>
+    </div>
 
-        <h2>Reflexión Generada (IA)</h2>
-        <div id="gemini-container" class="gemini-container">
-            <p id="gemini-respuesta">Aquí aparecerá la reflexión generada por la inteligencia artificial...</p>
-        </div>
-
-        <h2>Historial de Lanzamientos</h2>
-        <div id="historial"></div>
-
-        <!-- NUEVO: Botón para abrir recurso externo -->
-        <div style="text-align: center; margin-bottom: 20px;">
-             <a href="https://g.co/gemini/share/faf453108631" target="_blank" rel="noopener noreferrer" class="external-link-btn">
-                💡 ¿Quieres generar nuevos dados?
-             </a>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
