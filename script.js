@@ -1,4 +1,4 @@
-// script.js
+s// script.js
 
 // --- Definición de Dados ---
 const nombresDeDados = [
