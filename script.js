@@ -1,5 +1,6 @@
 // script.js
 
+// --- DEFINICIONES DE DADOS ---
 const nombresDeDados = ["Conceptos", "Autores", "Acciones", "Objetos", "Personajes", "Objetos II", "Acciones II", "Emociones", "Naturaleza"];
 const dado1_conceptos = ["imagenes/dios.png", "imagenes/icon1.png", "imagenes/libertad.png", "imagenes/tiempo.png", "imagenes/destino.png", "imagenes/esencia.png"];
 const dado2_autores = ["imagenes/autores/aquino.png", "imagenes/autores/aristoteles.png", "imagenes/autores/descartes.png", "imagenes/autores/kant.png", "imagenes/autores/nietzsche.png", "imagenes/autores/platon.png", "imagenes/autores/spinoza.png", "imagenes/autores/wittgenstein.png"];
@@ -12,16 +13,15 @@ const dado8_emociones = ["imagenes/emociones/corazones.png", "imagenes/emociones
 const dado9_naturaleza = ["imagenes/naturaleza/arbol.png", "imagenes/naturaleza/luna.png", "imagenes/naturaleza/nube.png", "imagenes/naturaleza/ola.png", "imagenes/naturaleza/roca.png", "imagenes/naturaleza/volcan.png"];
 const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_personajes, dado6_objetos2, dado7_acciones2, dado8_emociones, dado9_naturaleza];
 
-// --- Obtener los elementos del HTML ---
+// --- OBTENER ELEMENTOS DEL HTML ---
 const botonLanzar = document.getElementById('lanzar-btn');
 const contenedorBasicos = document.getElementById('seleccion-dados-basicos');
-// ✅ CORRECCIÓN: Faltaban estas dos líneas
 const contenedorFilosoficos = document.getElementById('seleccion-dados-filosoficos');
 const contenedorResultado = document.getElementById('resultado-dados');
 const contenedorHistorial = document.getElementById('historial');
 const inputNombreTirada = document.getElementById('nombre-tirada');
 
-// OBTENEMOS LOS ELEMENTOS DE LA MODAL
+// Elementos de la Modal
 const modalSuperposicion = document.getElementById('modal-superposicion');
 const modalContenido = document.getElementById('modal-contenido');
 const modalCerrar = document.getElementById('modal-cerrar');
@@ -29,6 +29,8 @@ const modalTitulo = document.getElementById('modal-titulo');
 const modalDados = document.getElementById('modal-dados');
 
 let numeroDeTirada = 1;
+
+// --- FUNCIONES ---
 
 function popularSeleccionDeDados() {
     const dadosFilosoficos = ["Autores", "Conceptos"];
@@ -53,18 +55,20 @@ function popularSeleccionDeDados() {
     });
 }
 
-botonLanzar.addEventListener('click', function() {
+function lanzarDados() {
     contenedorResultado.innerHTML = '';
     let resultadosActuales = [];
     let nombreParaLaTirada = inputNombreTirada.value.trim();
     if (nombreParaLaTirada === '') {
         nombreParaLaTirada = `Tirada ${numeroDeTirada}`;
     }
+
     const checkboxesSeleccionados = document.querySelectorAll('.contenedor-seleccion-dados input[type="checkbox"]:checked');
     if (checkboxesSeleccionados.length === 0) {
         alert("Por favor, selecciona al menos un dado para lanzar.");
         return;
     }
+
     checkboxesSeleccionados.forEach(checkbox => {
         const indiceDado = parseInt(checkbox.value, 10);
         const dadoElegido = todosLosDados[indiceDado];
@@ -79,32 +83,32 @@ botonLanzar.addEventListener('click', function() {
         dadoDiv.appendChild(img);
         contenedorResultado.appendChild(dadoDiv);
     });
+
     if (resultadosActuales.length > 0) {
         actualizarHistorial(resultadosActuales, nombreParaLaTirada);
         numeroDeTirada++;
         inputNombreTirada.value = '';
     }
-});
+}
 
 function getNombreParaAlt(ruta) {
     const nombreArchivo = ruta.split('/').pop();
     const sinExtension = nombreArchivo.substring(0, nombreArchivo.lastIndexOf('.'));
-    const nombreLegible = sinExtension.replace(/_/g, ' ');
-    return nombreLegible.charAt(0).toUpperCase() + nombreLegible.slice(1);
+    return sinExtension.replace(/_/g, ' ').replace(/^\w/, c => c.toUpperCase());
 }
 
 function actualizarHistorial(resultados, nombre) {
     const historialItem = document.createElement('div');
     historialItem.classList.add('historial-item');
-    historialItem.addEventListener('click', () => {
-        abrirModal(nombre, resultados);
-    });
+    historialItem.addEventListener('click', () => abrirModal(nombre, resultados));
+
     const infoDiv = document.createElement('div');
     infoDiv.classList.add('historial-info');
     const nombreSpan = document.createElement('span');
     nombreSpan.classList.add('historial-nombre');
     nombreSpan.textContent = nombre;
     infoDiv.appendChild(nombreSpan);
+
     const imagenesDiv = document.createElement('div');
     imagenesDiv.classList.add('historial-imagenes');
     resultados.forEach(rutaImagen => {
@@ -114,6 +118,7 @@ function actualizarHistorial(resultados, nombre) {
         img.classList.add('historial-img');
         imagenesDiv.appendChild(img);
     });
+
     historialItem.appendChild(infoDiv);
     historialItem.appendChild(imagenesDiv);
     contenedorHistorial.prepend(historialItem);
@@ -135,6 +140,8 @@ function cerrarModal() {
     modalSuperposicion.classList.add('modal-oculto');
 }
 
+// --- EVENTOS ---
+botonLanzar.addEventListener('click', lanzarDados);
 modalCerrar.addEventListener('click', cerrarModal);
 modalSuperposicion.addEventListener('click', (evento) => {
     if (evento.target === modalSuperposicion) {
@@ -142,4 +149,5 @@ modalSuperposicion.addEventListener('click', (evento) => {
     }
 });
 
+// --- INICIALIZACIÓN ---
 popularSeleccionDeDados();
