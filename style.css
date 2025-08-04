@@ -1,4 +1,3 @@
-/* ... (Todo el CSS anterior hasta el botón #lanzar-btn) ... */
 :root{--color-fondo:#f0f2f5;--color-contenedor:#ffffff;--color-texto-principal:#1a202c;--color-texto-secundario:#4a5568;--color-borde:#e2e8f0;--color-acento:#2d3748;--color-acento-hover:#1a202c;--sombra-suave:0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background-color:var(--color-fondo);color:var(--color-texto-secundario);display:flex;justify-content:center;padding:20px;line-height:1.5}
 .container{width:100%;max-width:680px;background:var(--color-contenedor);padding:25px;border-radius:12px;box-shadow:var(--sombra-suave)}
@@ -13,209 +12,30 @@ h2{color:var(--color-texto-principal);border-bottom:1px solid var(--color-borde)
 .opcion-dado:hover{border-color:var(--color-acento);background-color:#fdfdfd}
 .opcion-dado input[type=checkbox]{margin-right:10px;width:18px;height:18px;cursor:pointer;accent-color:var(--color-acento)}
 .opcion-dado label{font-size:.9rem;cursor:pointer}
-
-/* ✅ ESTILOS PARA EL NUEVO CAMPO DE TEXTO */
-.campo-nombre {
-    margin-top: 1.5rem;
-}
-.campo-nombre label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--color-texto-secundario);
-}
-.campo-nombre input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--color-borde);
-    border-radius: 8px;
-    font-size: 1rem;
-    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-.campo-nombre input:focus {
-    outline: none;
-    border-color: var(--color-acento);
-    box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
-}
-
-#lanzar-btn {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-contenedor);
-    background-color: var(--color-acento);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-    margin-top: 1rem; /* Margen ajustado */
-}
-
-#lanzar-btn:hover { background-color: var(--color-acento-hover); }
-#lanzar-btn:active { transform: translateY(1px) scale(0.99); }
-
-#resultado-dados {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 1rem;
-    padding: 15px;
-    background-color: #ffedd5;
-    border: 1px solid #fed7aa;
-    border-radius: 8px;
-    min-height: 100px;
-}
-
-.dado {
-    background-color: var(--color-contenedor);
-    border-radius: 8px;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: var(--sombra-suave);
-    margin: auto;
-    transition: transform 0.2s ease;
-}
-
-.dado:hover { transform: scale(1.05); }
-
-.dado img {
-    max-width: 80px;
-    max-height: 80px;
-    object-fit: contain;
-}
-
-#historial { margin-top: 1rem; }
-
-/* ✅ ESTILOS DEL HISTORIAL ACTUALIZADOS */
-.historial-item {
-    background-color: #fdfdfd;
-    padding: 12px; /* Un poco más de padding */
-    border-radius: 6px;
-    margin-bottom: 8px; /* Un poco más de separación */
-    border-left: 3px solid var(--color-borde);
-    transition: border-left-color 0.2s;
-}
-
-.historial-item:hover {
-    border-left-color: var(--color-acento);
-}
-
-.historial-info {
-    margin-bottom: 10px; /* Espacio entre el nombre y las imágenes */
-}
-
-.historial-nombre {
-    font-weight: 600;
-    font-size: 1.1rem; /* Nombre un poco más grande */
-    color: var(--color-texto-principal);
-}
-
-.historial-imagenes {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.historial-img {
-    height: 35px;
-    width: 35px;
-    border-radius: 4px;
-    object-fit: contain;
-    background-color: var(--color-contenedor);
-    border: 1px solid var(--color-borde);
-}
-
-/* ... (Todo tu CSS anterior permanece igual) ... */
-
-/* ✅ ESTILOS PARA LA VENTANA MODAL */
-
-/* La capa de fondo oscura y semi-transparente */
-#modal-superposicion {
-    position: fixed; /* Se queda fija en la pantalla */
-    z-index: 1000;   /* Se asegura de que esté por encima de todo */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo negro con opacidad */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s ease;
-}
-
-/* Clase para ocultar/mostrar la modal */
-.modal-oculto {
-    display: none;
-}
-
-/* El cuadro de diálogo principal */
-#modal-contenido {
-    background-color: var(--color-contenedor);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    width: 90%;
-    max-width: 600px;
-    position: relative; /* Necesario para posicionar el botón de cerrar */
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
-}
-
-#modal-superposicion:not(.modal-oculto) #modal-contenido {
-    transform: scale(1);
-}
-
-/* El botón 'X' para cerrar */
-#modal-cerrar {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: #aaa;
-    font-size: 2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-#modal-cerrar:hover {
-    color: #333;
-}
-
-/* Título dentro de la modal */
-#modal-titulo {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: var(--color-texto-principal);
-}
-
-/* Contenedor de los dados grandes */
-#modal-dados {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-}
-
-/* Estilo para las imágenes de los dados dentro de la modal */
-#modal-dados img {
-    width: 100px; /* Tamaño más grande para mejor visualización */
-    height: 100px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: var(--sombra-suave);
-}
-
-/* ✅ Pequeño cambio en el historial para indicar que es clickeable */
-.historial-item {
-    cursor: pointer;
-}
+.campo-nombre{margin-top:1.5rem}
+.campo-nombre label{display:block;font-size:.9rem;font-weight:600;margin-bottom:.5rem;color:var(--color-texto-secundario)}
+.campo-nombre input{width:100%;padding:10px 12px;border:1px solid var(--color-borde);border-radius:8px;font-size:1rem;box-sizing:border-box;transition:border-color .2s,box-shadow .2s}
+.campo-nombre input:focus{outline:none;border-color:var(--color-acento);box-shadow:0 0 0 3px rgba(45,55,72,.1)}
+#lanzar-btn{display:block;width:100%;padding:12px;font-size:1rem;font-weight:600;color:var(--color-contenedor);background-color:var(--color-acento);border:none;border-radius:8px;cursor:pointer;transition:background-color .2s,transform .1s;margin-top:1rem}
+#lanzar-btn:hover{background-color:var(--color-acento-hover)}
+#lanzar-btn:active{transform:translateY(1px) scale(.99)}
+#resultado-dados{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1rem;padding:15px;background-color:#ffedd5;border:1px solid #fed7aa;border-radius:8px;min-height:100px}
+.dado{background-color:var(--color-contenedor);border-radius:8px;width:100px;height:100px;display:flex;justify-content:center;align-items:center;box-shadow:var(--sombra-suave);margin:auto;transition:transform .2s ease}
+.dado:hover{transform:scale(1.05)}
+.dado img{max-width:80px;max-height:80px;object-fit:contain}
+#historial{margin-top:1rem}
+.historial-item{background-color:#fdfdfd;padding:12px;border-radius:6px;margin-bottom:8px;border-left:3px solid var(--color-borde);transition:border-left-color .2s;cursor:pointer}
+.historial-item:hover{border-left-color:var(--color-acento)}
+.historial-info{margin-bottom:10px}
+.historial-nombre{font-weight:600;font-size:1.1rem;color:var(--color-texto-principal)}
+.historial-imagenes{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.historial-img{height:35px;width:35px;border-radius:4px;object-fit:contain;background-color:var(--color-contenedor);border:1px solid var(--color-borde)}
+#modal-superposicion{position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,.6);display:flex;justify-content:center;align-items:center;transition:opacity .3s ease}
+.modal-oculto{display:none}
+#modal-contenido{background-color:var(--color-contenedor);padding:25px;border-radius:12px;box-shadow:0 5px 15px rgba(0,0,0,.3);width:90%;max-width:600px;position:relative;transform:scale(.95);transition:transform .3s ease}
+#modal-superposicion:not(.modal-oculto) #modal-contenido{transform:scale(1)}
+#modal-cerrar{position:absolute;top:10px;right:15px;color:#aaa;font-size:2rem;font-weight:700;cursor:pointer;transition:color .2s}
+#modal-cerrar:hover{color:#333}
+#modal-titulo{text-align:center;margin-top:0;margin-bottom:20px;color:var(--color-texto-principal)}
+#modal-dados{display:flex;flex-wrap:wrap;justify-content:center;gap:15px}
+#modal-dados img{width:100px;height:100px;background-color:#fff;border-radius:8px;box-shadow:var(--sombra-suave)}
