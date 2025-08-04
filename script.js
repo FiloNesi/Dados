@@ -17,7 +17,7 @@ const dado3_acciones = ["imagenes/acciones1/caminar.png", "imagenes/acciones1/co
 const dado4_objetos = ["imagenes/objetos1/arcoiris.png", "imagenes/objetos1/balanza.png", "imagenes/objetos1/candado.png", "imagenes/objetos1/llave.png", "imagenes/objetos1/lupa.png", "imagenes/objetos1/manzana.png"];
 const dado5_personajes = ["imagenes/personajes/astronauta.png", "imagenes/personajes/mago.png", "imagenes/personajes/nina.png", "imagenes/personajes/persona.png", "imagenes/personajes/reina.png", "imagenes/personajes/superheroe.png"];
 const dado6_objetos2 = ["imagenes/objetos2/brujula.png", "imagenes/objetos2/caja.png", "imagenes/objetos2/cerebro.png", "imagenes/objetos2/espejo.png", "imagenes/objetos2/libros.png", "imagenes/objetos2/vela.png"];
-const dado7_acciones2 = ["imagenes/acciones2/espiral.png", "imagenes/acciones2/explosion.png", "imagenes/acciones2/mano.png", "imagenes/acciones2/paracaidas.png", "Democracia", "Contrato Social"].map(crearRutaImagen);
+const dado7_acciones2 = ["imagenes/acciones2/espiral.png", "imagenes/acciones2/explosion.png", "imagenes/acciones2/mano.png", "imagenes/acciones2/paracaidas.png", "Democracia", "Contrato Social"];
 const dado8_metaforas = ["La Caverna", "El Eterno Retorno", "El Genio Maligno", "La Muerte de Dios", "El Superhombre", "El Velo de la Ignorancia"].map(crearRutaImagen);
 const dado9_autores2 = ["Sócrates", "Foucault", "Simone de Beauvoir", "Hume", "Spinoza", "Hannah Arendt"].map(crearRutaImagen);
 
