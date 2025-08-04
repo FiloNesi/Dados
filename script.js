@@ -1,6 +1,5 @@
 // script.js
 
-// ... (Definiciones de dados y constantes de los dados permanecen igual)
 const nombresDeDados = ["Conceptos", "Autores", "Acciones", "Objetos", "Personajes", "Objetos II", "Acciones II", "Emociones", "Naturaleza"];
 const dado1_conceptos = ["imagenes/dios.png", "imagenes/icon1.png", "imagenes/libertad.png", "imagenes/tiempo.png", "imagenes/destino.png", "imagenes/esencia.png"];
 const dado2_autores = ["imagenes/autores/aquino.png", "imagenes/autores/aristoteles.png", "imagenes/autores/descartes.png", "imagenes/autores/kant.png", "imagenes/autores/nietzsche.png", "imagenes/autores/platon.png", "imagenes/autores/spinoza.png", "imagenes/autores/wittgenstein.png"];
@@ -13,16 +12,16 @@ const dado8_emociones = ["imagenes/emociones/corazones.png", "imagenes/emociones
 const dado9_naturaleza = ["imagenes/naturaleza/arbol.png", "imagenes/naturaleza/luna.png", "imagenes/naturaleza/nube.png", "imagenes/naturaleza/ola.png", "imagenes/naturaleza/roca.png", "imagenes/naturaleza/volcan.png"];
 const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_personajes, dado6_objetos2, dado7_acciones2, dado8_emociones, dado9_naturaleza];
 
-
-// ... (Todo el código JS anterior hasta obtener los elementos del HTML) ...
 // --- Obtener los elementos del HTML ---
 const botonLanzar = document.getElementById('lanzar-btn');
 const contenedorBasicos = document.getElementById('seleccion-dados-basicos');
-// ... (otros contenedores)
+// ✅ CORRECCIÓN: Faltaban estas dos líneas
+const contenedorFilosoficos = document.getElementById('seleccion-dados-filosoficos');
+const contenedorResultado = document.getElementById('resultado-dados');
 const contenedorHistorial = document.getElementById('historial');
 const inputNombreTirada = document.getElementById('nombre-tirada');
 
-// ✅ OBTENEMOS LOS NUEVOS ELEMENTOS DE LA MODAL
+// OBTENEMOS LOS ELEMENTOS DE LA MODAL
 const modalSuperposicion = document.getElementById('modal-superposicion');
 const modalContenido = document.getElementById('modal-contenido');
 const modalCerrar = document.getElementById('modal-cerrar');
@@ -31,7 +30,6 @@ const modalDados = document.getElementById('modal-dados');
 
 let numeroDeTirada = 1;
 
-// ... (la función popularSeleccionDeDados y el listener del botón de lanzar no cambian) ...
 function popularSeleccionDeDados() {
     const dadosFilosoficos = ["Autores", "Conceptos"];
     nombresDeDados.forEach((nombre, index) => {
@@ -95,23 +93,18 @@ function getNombreParaAlt(ruta) {
     return nombreLegible.charAt(0).toUpperCase() + nombreLegible.slice(1);
 }
 
-// ✅ FUNCIÓN DE HISTORIAL MODIFICADA para AÑADIR EL EVENTO DE CLICK
 function actualizarHistorial(resultados, nombre) {
     const historialItem = document.createElement('div');
     historialItem.classList.add('historial-item');
-
-    // Añadimos el listener para abrir la modal
     historialItem.addEventListener('click', () => {
         abrirModal(nombre, resultados);
     });
-
     const infoDiv = document.createElement('div');
     infoDiv.classList.add('historial-info');
     const nombreSpan = document.createElement('span');
     nombreSpan.classList.add('historial-nombre');
     nombreSpan.textContent = nombre;
     infoDiv.appendChild(nombreSpan);
-
     const imagenesDiv = document.createElement('div');
     imagenesDiv.classList.add('historial-imagenes');
     resultados.forEach(rutaImagen => {
@@ -121,26 +114,20 @@ function actualizarHistorial(resultados, nombre) {
         img.classList.add('historial-img');
         imagenesDiv.appendChild(img);
     });
-
     historialItem.appendChild(infoDiv);
     historialItem.appendChild(imagenesDiv);
-    
     contenedorHistorial.prepend(historialItem);
 }
 
-// ✅ NUEVAS FUNCIONES PARA CONTROLAR LA MODAL
 function abrirModal(nombre, imagenes) {
-    // 1. Rellenar el contenido de la modal
     modalTitulo.textContent = nombre;
-    modalDados.innerHTML = ''; // Limpiar dados anteriores
+    modalDados.innerHTML = '';
     imagenes.forEach(rutaImagen => {
         const img = document.createElement('img');
         img.src = rutaImagen;
         img.alt = getNombreParaAlt(rutaImagen);
         modalDados.appendChild(img);
     });
-
-    // 2. Mostrar la modal
     modalSuperposicion.classList.remove('modal-oculto');
 }
 
@@ -148,16 +135,11 @@ function cerrarModal() {
     modalSuperposicion.classList.add('modal-oculto');
 }
 
-// ✅ EVENTOS PARA CERRAR LA MODAL
 modalCerrar.addEventListener('click', cerrarModal);
-
 modalSuperposicion.addEventListener('click', (evento) => {
-    // Si se hace click en el fondo oscuro (la superposición), se cierra.
-    // Esto evita que se cierre al hacer click en el contenido de la modal.
     if (evento.target === modalSuperposicion) {
         cerrarModal();
     }
 });
 
-// --- Inicialización ---
 popularSeleccionDeDados();
