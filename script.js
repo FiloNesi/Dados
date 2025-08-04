@@ -3,7 +3,7 @@
 // --- Definición de Dados ---
 const nombresDeDados = [
     "Conceptos", "Autores", "Acciones", "Objetos", "Personajes",
-    "Objetos II", "Acciones II", "Metáforas", "Autores II"
+    "Objetos II", "Acciones II", "Emociones", "Autores II"
 ];
 
 function crearRutaImagen(texto) {
@@ -18,10 +18,10 @@ const dado4_objetos = ["imagenes/objetos1/arcoiris.png", "imagenes/objetos1/bala
 const dado5_personajes = ["imagenes/personajes/astronauta.png", "imagenes/personajes/mago.png", "imagenes/personajes/nina.png", "imagenes/personajes/persona.png", "imagenes/personajes/reina.png", "imagenes/personajes/superheroe.png"];
 const dado6_objetos2 = ["imagenes/objetos2/brujula.png", "imagenes/objetos2/caja.png", "imagenes/objetos2/cerebro.png", "imagenes/objetos2/espejo.png", "imagenes/objetos2/libros.png", "imagenes/objetos2/vela.png"];
 const dado7_acciones2 = ["imagenes/acciones2/espiral.png", "imagenes/acciones2/explosion.png", "imagenes/acciones2/mano.png", "imagenes/acciones2/paracaidas.png", "magenes/acciones2/mascara.png", "magenes/acciones2/flechas.png"];
-const dado8_metaforas = ["La Caverna", "El Eterno Retorno", "El Genio Maligno", "La Muerte de Dios", "El Superhombre", "El Velo de la Ignorancia"].map(crearRutaImagen);
+const dado8_emociones = ["imagenes/emociones/corazones.png", "imagenes/emociones/enfado.png", "imagenes/emociones/pensativo.png", "imagenes/emociones/sonrisa.png", "imagenes/emociones/sorpresa.png", "imagenes/emociones/tristeza.png"];
 const dado9_autores2 = ["Sócrates", "Foucault", "Simone de Beauvoir", "Hume", "Spinoza", "Hannah Arendt"].map(crearRutaImagen);
 
-const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_personajes, dado6_objetos2, dado7_acciones2, dado8_metaforas, dado9_autores2];
+const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_personajes, dado6_objetos2, dado7_acciones2, dado8_emociones, dado9_autores2];
 
 // --- Obtener los elementos del HTML ---
 const botonLanzar = document.getElementById('lanzar-btn');
