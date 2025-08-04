@@ -14,19 +14,24 @@ const dado9_naturaleza = ["imagenes/naturaleza/arbol.png", "imagenes/naturaleza/
 const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_personajes, dado6_objetos2, dado7_acciones2, dado8_emociones, dado9_naturaleza];
 
 
+// ... (Todo el código JS anterior hasta obtener los elementos del HTML) ...
 // --- Obtener los elementos del HTML ---
 const botonLanzar = document.getElementById('lanzar-btn');
 const contenedorBasicos = document.getElementById('seleccion-dados-basicos');
-const contenedorFilosoficos = document.getElementById('seleccion-dados-filosoficos');
-const contenedorResultado = document.getElementById('resultado-dados');
+// ... (otros contenedores)
 const contenedorHistorial = document.getElementById('historial');
-// ✅ OBTENEMOS EL NUEVO CAMPO DE TEXTO
 const inputNombreTirada = document.getElementById('nombre-tirada');
 
-// ✅ VARIABLE PARA EL CONTEO DE TIRADAS POR DEFECTO
+// ✅ OBTENEMOS LOS NUEVOS ELEMENTOS DE LA MODAL
+const modalSuperposicion = document.getElementById('modal-superposicion');
+const modalContenido = document.getElementById('modal-contenido');
+const modalCerrar = document.getElementById('modal-cerrar');
+const modalTitulo = document.getElementById('modal-titulo');
+const modalDados = document.getElementById('modal-dados');
+
 let numeroDeTirada = 1;
 
-// --- Lógica de la aplicación ---
+// ... (la función popularSeleccionDeDados y el listener del botón de lanzar no cambian) ...
 function popularSeleccionDeDados() {
     const dadosFilosoficos = ["Autores", "Conceptos"];
     nombresDeDados.forEach((nombre, index) => {
@@ -53,27 +58,21 @@ function popularSeleccionDeDados() {
 botonLanzar.addEventListener('click', function() {
     contenedorResultado.innerHTML = '';
     let resultadosActuales = [];
-
-    // ✅ GESTIÓN DEL NOMBRE DE LA TIRADA
     let nombreParaLaTirada = inputNombreTirada.value.trim();
     if (nombreParaLaTirada === '') {
         nombreParaLaTirada = `Tirada ${numeroDeTirada}`;
     }
-
     const checkboxesSeleccionados = document.querySelectorAll('.contenedor-seleccion-dados input[type="checkbox"]:checked');
-
     if (checkboxesSeleccionados.length === 0) {
         alert("Por favor, selecciona al menos un dado para lanzar.");
-        return; // Detiene la ejecución si no hay dados seleccionados
+        return;
     }
-
     checkboxesSeleccionados.forEach(checkbox => {
         const indiceDado = parseInt(checkbox.value, 10);
         const dadoElegido = todosLosDados[indiceDado];
         const caraAleatoria = Math.floor(Math.random() * dadoElegido.length);
         const conceptoGanador = dadoElegido[caraAleatoria];
         resultadosActuales.push(conceptoGanador);
-
         const dadoDiv = document.createElement('div');
         dadoDiv.classList.add('dado');
         const img = document.createElement('img');
@@ -82,12 +81,10 @@ botonLanzar.addEventListener('click', function() {
         dadoDiv.appendChild(img);
         contenedorResultado.appendChild(dadoDiv);
     });
-
     if (resultadosActuales.length > 0) {
-        // Pasamos el nombre al historial
         actualizarHistorial(resultadosActuales, nombreParaLaTirada);
-        numeroDeTirada++; // Incrementamos el contador para la próxima tirada por defecto
-        inputNombreTirada.value = ''; // Limpiamos el campo
+        numeroDeTirada++;
+        inputNombreTirada.value = '';
     }
 });
 
@@ -98,24 +95,25 @@ function getNombreParaAlt(ruta) {
     return nombreLegible.charAt(0).toUpperCase() + nombreLegible.slice(1);
 }
 
-// ✅ FUNCIÓN DE HISTORIAL MODIFICADA para aceptar y mostrar el nombre
+// ✅ FUNCIÓN DE HISTORIAL MODIFICADA para AÑADIR EL EVENTO DE CLICK
 function actualizarHistorial(resultados, nombre) {
     const historialItem = document.createElement('div');
     historialItem.classList.add('historial-item');
 
-    // Contenedor para la información (el nombre)
+    // Añadimos el listener para abrir la modal
+    historialItem.addEventListener('click', () => {
+        abrirModal(nombre, resultados);
+    });
+
     const infoDiv = document.createElement('div');
     infoDiv.classList.add('historial-info');
-    
     const nombreSpan = document.createElement('span');
     nombreSpan.classList.add('historial-nombre');
     nombreSpan.textContent = nombre;
     infoDiv.appendChild(nombreSpan);
 
-    // Contenedor para las imágenes de los dados
     const imagenesDiv = document.createElement('div');
     imagenesDiv.classList.add('historial-imagenes');
-
     resultados.forEach(rutaImagen => {
         const img = document.createElement('img');
         img.src = rutaImagen;
@@ -124,12 +122,42 @@ function actualizarHistorial(resultados, nombre) {
         imagenesDiv.appendChild(img);
     });
 
-    // Añadimos la info y las imágenes al item principal del historial
     historialItem.appendChild(infoDiv);
     historialItem.appendChild(imagenesDiv);
     
     contenedorHistorial.prepend(historialItem);
 }
+
+// ✅ NUEVAS FUNCIONES PARA CONTROLAR LA MODAL
+function abrirModal(nombre, imagenes) {
+    // 1. Rellenar el contenido de la modal
+    modalTitulo.textContent = nombre;
+    modalDados.innerHTML = ''; // Limpiar dados anteriores
+    imagenes.forEach(rutaImagen => {
+        const img = document.createElement('img');
+        img.src = rutaImagen;
+        img.alt = getNombreParaAlt(rutaImagen);
+        modalDados.appendChild(img);
+    });
+
+    // 2. Mostrar la modal
+    modalSuperposicion.classList.remove('modal-oculto');
+}
+
+function cerrarModal() {
+    modalSuperposicion.classList.add('modal-oculto');
+}
+
+// ✅ EVENTOS PARA CERRAR LA MODAL
+modalCerrar.addEventListener('click', cerrarModal);
+
+modalSuperposicion.addEventListener('click', (evento) => {
+    // Si se hace click en el fondo oscuro (la superposición), se cierra.
+    // Esto evita que se cierre al hacer click en el contenido de la modal.
+    if (evento.target === modalSuperposicion) {
+        cerrarModal();
+    }
+});
 
 // --- Inicialización ---
 popularSeleccionDeDados();
