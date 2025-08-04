@@ -1,12 +1,3 @@
-¡Claro\! Aquí tienes el código completo con la mejora que solicitaste implementada, además de la corrección del error tipográfico que comentamos antes.
-
-Este código ya no utiliza `innerHTML` para crear los elementos de imagen, lo que lo hace más seguro y eficiente.
-
------
-
-### Código reescrito y mejorado
-
-```javascript
 // script.js
 
 // --- Definición de Dados ---
@@ -22,7 +13,6 @@ function crearRutaImagen(texto) {
 
 const dado1_conceptos = ["imagenes/dios.png", "imagenes/icon1.png", "imagenes/libertad.png", "imagenes/tiempo.png", "imagenes/destino.png", "imagenes/esencia.png"];
 const dado2_autores = ["imagenes/platon.jpg", "imagenes/aristoteles.jpg", "imagenes/kant.jpg", "imagenes/nietzsche.jpg", "imagenes/descartes.png", "imagenes/wittgenstein.jpg"];
-// ✅ CORREGIDO: "mirar.pgn" a "mirar.png"
 const dado3_acciones = ["imagenes/acciones1/caminar.png", "imagenes/acciones1/construir.png", "imagenes/acciones1/saltar.png", "imagenes/acciones1/mirar.png", "imagenes/acciones1/pensar.png", "imagenes/acciones1/toser.png"];
 const dado4_objetos = ["imagenes/objetos1/arcoiris.png", "imagenes/objetos1/balanza.png", "imagenes/objetos1/candado.png", "imagenes/objetos1/llave.png", "imagenes/objetos1/lupa.png", "imagenes/objetos1/manzana.png"];
 const dado5_personajes = ["imagenes/personajes/astronauta.png", "imagenes/personajes/mago.png", "imagenes/personajes/nina.png", "imagenes/personajes/persona.png", "imagenes/personajes/reina.png", "imagenes/personajes/superheroe.png"];
@@ -73,16 +63,14 @@ botonLanzar.addEventListener('click', function() {
         const conceptoGanador = dadoElegido[caraAleatoria];
         resultadosActuales.push(conceptoGanador);
 
-        // ✨ MEJORA APLICADA: Creación de elementos con createElement
+        // ✅ MEJORA: El estilo ya no se define aquí, sino en el CSS
         const dadoDiv = document.createElement('div');
-        dadoDiv.classList.add('dado');
+        dadoDiv.classList.add('dado'); // Esta clase aplica los estilos desde style.css
 
         const img = document.createElement('img');
         img.src = conceptoGanador;
         img.alt = getNombreParaAlt(conceptoGanador);
-        img.style.maxWidth = '100px';   // Es ideal mover esto a una clase CSS
-        img.style.maxHeight = '100px';  // Es ideal mover esto a una clase CSS
-
+        
         dadoDiv.appendChild(img);
         contenedorResultado.appendChild(dadoDiv);
     });
@@ -114,4 +102,3 @@ function actualizarHistorial(resultados) {
 
 // --- Inicialización ---
 popularSeleccionDeDados();
-```
