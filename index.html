@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Dados Filosóficos</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Dados Filosóficos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
+    <div class="container">
 
-        <h1>🎲 Dados Filosóficos</h1>
-        <p>Una herramienta inspirada en "Story Cubes" para el aula de Filosofía.</p>
+        <h1>🎲 Dados Filosóficos</h1>
+        <p>Una herramienta inspirada en "Story Cubes" para el aula de Filosofía.</p>
 
-        <div class="controles">
-            <h2>Elige tus dados</h2>
-            <div id="seleccion-dados" class="contenedor-seleccion-dados">
-            </div>
-        </div>
+        <div class="controles">
+            <h2>Elige tus dados</h2>
 
-        <button id="lanzar-btn">Lanzar Dados Seleccionados</button>
+            <div class="grupo-dados">
+                <h3>Básicos</h3>
+                <div id="seleccion-dados-basicos" class="contenedor-seleccion-dados">
+                    </div>
+            </div>
 
-        <h2>Resultado Actual</h2>
-        <div id="resultado-dados" class="contenedor-dados"></div>
+            <div class="grupo-dados">
+                <h3>Filosóficos</h3>
+                <div id="seleccion-dados-filosoficos" class="contenedor-seleccion-dados">
+                    </div>
+            </div>
+        </div>
+        <button id="lanzar-btn">Lanzar Dados Seleccionados</button>
 
-        <h2>Historial de Lanzamientos</h2>
-        <div id="historial"></div>
+        <h2>Resultado Actual</h2>
+        <div id="resultado-dados" class="contenedor-dados"></div>
 
-    </div>
+        <h2>Historial de Lanzamientos</h2>
+        <div id="historial"></div>
 
-    <script src="script.js"></script>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
