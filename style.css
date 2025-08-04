@@ -1,95 +1,43 @@
-/* style.css - Estilo más uniforme y compacto */
+/* ... (Todo el CSS anterior hasta el botón #lanzar-btn) ... */
+:root{--color-fondo:#f0f2f5;--color-contenedor:#ffffff;--color-texto-principal:#1a202c;--color-texto-secundario:#4a5568;--color-borde:#e2e8f0;--color-acento:#2d3748;--color-acento-hover:#1a202c;--sombra-suave:0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background-color:var(--color-fondo);color:var(--color-texto-secundario);display:flex;justify-content:center;padding:20px;line-height:1.5}
+.container{width:100%;max-width:680px;background:var(--color-contenedor);padding:25px;border-radius:12px;box-shadow:var(--sombra-suave)}
+h1,h2,p{text-align:center}
+h1{color:var(--color-texto-principal);font-size:2.25rem;margin-top:0;margin-bottom:.5rem}
+p{max-width:500px;margin:0 auto 2rem;font-size:1rem}
+h2{color:var(--color-texto-principal);border-bottom:1px solid var(--color-borde);padding-bottom:8px;margin-top:2rem;font-size:1.25rem}
+.grupo-dados{margin-bottom:1.5rem}
+.grupo-dados h3{font-size:1rem;color:var(--color-texto-secundario);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--color-borde);font-weight:600}
+.contenedor-seleccion-dados{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;background-color:#f7fafc;padding:12px;border:1px solid var(--color-borde);border-radius:8px;margin-top:1rem}
+.opcion-dado{display:flex;align-items:center;padding:8px 10px;border-radius:6px;background-color:var(--color-contenedor);border:1px solid transparent;transition:all .2s ease-in-out;cursor:pointer}
+.opcion-dado:hover{border-color:var(--color-acento);background-color:#fdfdfd}
+.opcion-dado input[type=checkbox]{margin-right:10px;width:18px;height:18px;cursor:pointer;accent-color:var(--color-acento)}
+.opcion-dado label{font-size:.9rem;cursor:pointer}
 
-:root {
-    --color-fondo: #f0f2f5;
-    --color-contenedor: #ffffff;
-    --color-texto-principal: #1a202c;
-    --color-texto-secundario: #4a5568;
-    --color-borde: #e2e8f0;
-    --color-acento: #2d3748;
-    --color-acento-hover: #1a202c;
-    --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+/* ✅ ESTILOS PARA EL NUEVO CAMPO DE TEXTO */
+.campo-nombre {
+    margin-top: 1.5rem;
 }
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--color-fondo);
-    color: var(--color-texto-secundario);
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    line-height: 1.5;
-}
-
-.container {
-    width: 100%;
-    max-width: 680px;
-    background: var(--color-contenedor);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: var(--sombra-suave);
-}
-
-h1, h2, p { text-align: center; }
-h1 { color: var(--color-texto-principal); font-size: 2.25rem; margin-top: 0; margin-bottom: 0.5rem; }
-p { max-width: 500px; margin: 0 auto 2rem auto; font-size: 1rem; }
-h2 { color: var(--color-texto-principal); border-bottom: 1px solid var(--color-borde); padding-bottom: 8px; margin-top: 2rem; font-size: 1.25rem; }
-
-/* ✅ --- NUEVOS ESTILOS PARA LOS GRUPOS --- */
-.grupo-dados {
-    margin-bottom: 1.5rem; /* Espacio entre los grupos */
-}
-
-.grupo-dados h3 {
-    font-size: 1rem;
-    color: var(--color-texto-secundario);
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--color-borde);
+.campo-nombre label {
+    display: block;
+    font-size: 0.9rem;
     font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-texto-secundario);
 }
-/* --- FIN DE NUEVOS ESTILOS --- */
-
-
-/* ✅ SELECTOR CAMBIADO DE ID (#seleccion-dados) a CLASE (.contenedor-seleccion-dados) */
-.contenedor-seleccion-dados {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 8px;
-    background-color: #f7fafc;
-    padding: 12px;
+.campo-nombre input {
+    width: 100%;
+    padding: 10px 12px;
     border: 1px solid var(--color-borde);
     border-radius: 8px;
-    margin-top: 1rem;
+    font-size: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no afecte al ancho total */
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
-
-.opcion-dado {
-    display: flex;
-    align-items: center;
-    padding: 8px 10px;
-    border-radius: 6px;
-    background-color: var(--color-contenedor);
-    border: 1px solid transparent;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-}
-
-.opcion-dado:hover {
+.campo-nombre input:focus {
+    outline: none;
     border-color: var(--color-acento);
-    background-color: #fdfdfd;
-}
-
-.opcion-dado input[type="checkbox"] {
-    margin-right: 10px;
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: var(--color-acento);
-}
-
-.opcion-dado label {
-    font-size: 0.9rem;
-    cursor: pointer;
+    box-shadow: 0 0 0 3px rgba(45, 55, 72, 0.1);
 }
 
 #lanzar-btn {
@@ -104,7 +52,7 @@ h2 { color: var(--color-texto-principal); border-bottom: 1px solid var(--color-b
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
-    margin-top: 1.5rem;
+    margin-top: 1rem; /* Margen ajustado */
 }
 
 #lanzar-btn:hover { background-color: var(--color-acento-hover); }
@@ -145,19 +93,36 @@ h2 { color: var(--color-texto-principal); border-bottom: 1px solid var(--color-b
 
 #historial { margin-top: 1rem; }
 
+/* ✅ ESTILOS DEL HISTORIAL ACTUALIZADOS */
 .historial-item {
     background-color: #fdfdfd;
-    padding: 8px 12px;
+    padding: 12px; /* Un poco más de padding */
     border-radius: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 8px; /* Un poco más de separación */
     border-left: 3px solid var(--color-borde);
+    transition: border-left-color 0.2s;
+}
+
+.historial-item:hover {
+    border-left-color: var(--color-acento);
+}
+
+.historial-info {
+    margin-bottom: 10px; /* Espacio entre el nombre y las imágenes */
+}
+
+.historial-nombre {
+    font-weight: 600;
+    font-size: 1.1rem; /* Nombre un poco más grande */
+    color: var(--color-texto-principal);
+}
+
+.historial-imagenes {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
 }
-
-.historial-item:hover { border-left-color: var(--color-acento); }
 
 .historial-img {
     height: 35px;
