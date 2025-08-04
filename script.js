@@ -3,7 +3,7 @@
 // --- Definición de Dados ---
 const nombresDeDados = [
     "Conceptos", "Autores", "Acciones", "Objetos", "Personajes",
-    "Objetos II", "Acciones II", "Emociones", "Autores II"
+    "Objetos II", "Acciones II", "Emociones", "Naturaleza"
 ];
 
 function crearRutaImagen(texto) {
@@ -19,9 +19,9 @@ const dado5_personajes = ["imagenes/personajes/astronauta.png", "imagenes/person
 const dado6_objetos2 = ["imagenes/objetos2/brujula.png", "imagenes/objetos2/caja.png", "imagenes/objetos2/cerebro.png", "imagenes/objetos2/espejo.png", "imagenes/objetos2/libros.png", "imagenes/objetos2/vela.png"];
 const dado7_acciones2 = ["imagenes/acciones2/espiral.png", "imagenes/acciones2/explosion.png", "imagenes/acciones2/mano.png", "imagenes/acciones2/paracaidas.png", "magenes/acciones2/mascara.png", "magenes/acciones2/flechas.png"];
 const dado8_emociones = ["imagenes/emociones/corazones.png", "imagenes/emociones/enfado.png", "imagenes/emociones/pensativo.png", "imagenes/emociones/sonrisa.png", "imagenes/emociones/sorpresa.png", "imagenes/emociones/tristeza.png"];
-const dado9_autores2 = ["Sócrates", "Foucault", "Simone de Beauvoir", "Hume", "Spinoza", "Hannah Arendt"].map(crearRutaImagen);
+const dado9_naturaleza = ["imagenes/naturaleza/arbol.png", "imagenes/naturaleza/luna.png", "imagenes/naturaleza/nube.png", "imagenes/naturaleza/ola.png", "imagenes/naturaleza/roca.png", "imagenes/naturaleza/volcan.png"];
 
-const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_personajes, dado6_objetos2, dado7_acciones2, dado8_emociones, dado9_autores2];
+const todosLosDados = [dado1_conceptos, dado2_autores, dado3_acciones, dado4_objetos, dado5_personajes, dado6_objetos2, dado7_acciones2, dado8_emociones, dado9_naturaleza];
 
 // --- Obtener los elementos del HTML ---
 const botonLanzar = document.getElementById('lanzar-btn');
