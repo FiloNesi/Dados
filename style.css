@@ -1,4 +1,4 @@
-/* style.css */
+/* style.css MODIFICADO */
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -41,7 +41,6 @@ p {
     margin: 20px 0;
 }
 
-/* ✅ CORREGIDO: Selector cambiado a ID para coincidir con el JS */
 #seleccion-dados {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -66,13 +65,12 @@ p {
     background-color: #e9ecef;
 }
 
-/* ✨ MEJORA: Checkbox más grande y con mejor estilo para usabilidad */
 .opcion-dado input[type="checkbox"] {
     margin-right: 10px;
     width: 16px;
     height: 16px;
     cursor: pointer;
-    accent-color: #3498db; /* Da color a la marca en navegadores modernos */
+    accent-color: #3498db;
 }
 
 .opcion-dado label {
@@ -99,37 +97,38 @@ p {
     background-color: #2980b9;
 }
 
-/* ✨ MEJORA: Feedback visual instantáneo al pulsar el botón */
 #lanzar-btn:active {
     background-color: #216a9a;
     transform: translateY(1px);
 }
 
-/* ✅ CORREGIDO: Selector cambiado a ID para coincidir con el JS */
+/* --- CAMBIOS REALIZADOS AQUÍ --- */
 #resultado-dados {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid; /* 1. Cambiado de 'flex' a 'grid' */
+    grid-template-columns: repeat(3, 1fr); /* 2. Define 3 columnas de igual tamaño */
     gap: 15px;
-    justify-content: center;
-    align-items: center;
     margin-top: 20px;
-    min-height: 140px; /* Ajustado para que coincida con la altura del dado */
+    background-color: orange; /* 3. Añade el fondo naranja */
+    padding: 20px; /* Añade un poco de espacio interior */
+    border-radius: 8px; /* Redondea las esquinas del contenedor */
 }
+/* --- FIN DE LOS CAMBIOS --- */
 
 .dado {
     background-color: #fff;
     border: 2px solid #bdc3c7;
     border-radius: 8px;
-    padding: 10px; /* Ajustado para mejor encaje */
-    width: 120px; /* Ajustado */
-    height: 120px; /* Ajustado */
+    padding: 10px;
+    width: 120px;
+    height: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    /* ✅ MEJORA: Se centra automáticamente en la celda de la cuadrícula */
+    margin: auto;
 }
 
-/* ✨ MEJORA: Esta regla ahora controla el tamaño de la imagen del dado */
 .dado img {
     max-width: 100px;
     max-height: 100px;
@@ -154,5 +153,5 @@ p {
     border-radius: 4px;
     vertical-align: middle;
     object-fit: contain;
-    background-color: #fff; /* Fondo para imágenes con transparencia */
+    background-color: #fff;
 }
